@@ -30,20 +30,22 @@ model = LogisticRegression()
 model.fit(X_train, y_train)
 
 # Save X_test and y_test for evaluation
-joblib.dump(X_test, 'X_test.pkl')
-joblib.dump(y_test, 'y_test.pkl')
+joblib.dump(X_test, 'models/X_test.pkl')
+joblib.dump(y_test, 'models/y_test.pkl')
 
-# Save the trained model as well
-joblib.dump(model, 'phishing_model.pkl')
-joblib.dump(vectorizer, 'vectorizer.pkl')  # Save the vectorizer
+# Save the trained model and vectorizer for future use
+joblib.dump(model, 'models/phishing_model.pkl')
+joblib.dump(vectorizer, 'models/vectorizer.pkl')  # Save the vectorizer
 
 # Test accuracy
 y_pred = model.predict(X_test)
 print(f"Model Accuracy: {accuracy_score(y_test, y_pred)}")
 
+'''
 # Save the model and vectorizer for future use
 import pickle
 with open('models/phishing_model.pkl', 'wb') as f:
     pickle.dump(model, f)
 with open('models/vectorizer.pkl', 'wb') as f:
     pickle.dump(vectorizer, f)
+'''

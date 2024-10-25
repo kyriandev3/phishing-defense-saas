@@ -2,11 +2,11 @@ import joblib
 from sklearn.metrics import confusion_matrix, classification_report
 
 # Load the trained model
-model = joblib.load('phishing_model.pkl')
+model = joblib.load('models/phishing_model.pkl')
 
 # Load the saved X_test and y_test
-X_test = joblib.load('X_test.pkl')
-y_test = joblib.load('y_test.pkl')
+X_test = joblib.load('models/X_test.pkl')
+y_test = joblib.load('models/y_test.pkl')
 
 # Predict using the model
 y_pred = model.predict(X_test)
