@@ -1,33 +1,30 @@
-from flask import Flask, request, render_template
+from flask import Flask, render_template, request
 import joblib
-import pandas as pd
+import os
 
 app = Flask(__name__)
 
-# Load the model and vectorizer
-model = joblib.load('models/phishing_model.pkl')
-vectorizer = joblib.load('models/vectorizer.pkl')
+# Load model and vectorizer
+model_path = os.path.join('models', 'phishing_model.pkl')
+vectorizer_path = os.path.join('models', 'vectorizer.pkl')
+model = joblib.load(model_path)
+vectorizer = joblib.load(vectorizer_path)
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
-
-@app.route('/predict', methods=['POST'])
-def predict():
     if request.method == 'POST':
-        file = request.files['file']
-        if not file:
-            return "No file uploaded", 400
-        
-        # Read and process the uploaded file
-        text = file.read().decode('utf-8')
-        prediction = model.predict(vectorizer.transform([text]))
+        # Get input email text
+        email_text = request.form['email_text']
 
-        # Define result and recommendations
-        result = 'Phishing' if prediction[0] == 1 else 'Safe'
-        recommendation = 'Do not click any links and report it.' if result == 'Phishing' else 'Safe to open.'
+        # Preprocess and predict
+        email_vector = vectorizer.transform([email_text])
+        prediction = model.predict(email_vector)[0]
 
-        return render_template('index.html', prediction={'result': result, 'recommendation': recommendation, 'class': 'phishing' if result == 'Phishing' else 'safe'})
+        # Display result
+        result = 'Phishing' if prediction == 1 else 'Not Phishing'
+        return render_template('index.html', prediction=result, email_text=email_text)
+
+    return render_template('index.html', prediction=None)
 
 if __name__ == '__main__':
     app.run(debug=True)
