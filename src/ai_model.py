@@ -41,11 +41,3 @@ joblib.dump(vectorizer, 'models/vectorizer.pkl')  # Save the vectorizer
 y_pred = model.predict(X_test)
 print(f"Model Accuracy: {accuracy_score(y_test, y_pred)}")
 
-'''
-# Save the model and vectorizer for future use
-import pickle
-with open('models/phishing_model.pkl', 'wb') as f:
-    pickle.dump(model, f)
-with open('models/vectorizer.pkl', 'wb') as f:
-    pickle.dump(vectorizer, f)
-'''
