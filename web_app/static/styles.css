@@ -1,65 +1,94 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+/* styles.css */
+
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f7fa;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
 }
 
 .container {
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
-}
-
-header {
-    background: #007BFF;
-    color: #fff;
-    padding: 20px 0;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    padding: 30px;
     text-align: center;
 }
 
 h1 {
-    margin: 0;
+    font-size: 1.8rem;
+    color: #004d99;
+    margin-bottom: 20px;
 }
 
-.upload-section {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.results-section {
-    margin-top: 20px;
-}
-
-.result {
-    background: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.result .phishing {
-    color: red;
+.email-label {
     font-weight: bold;
+    margin-bottom: 10px;
 }
 
-.result .safe {
-    color: green;
-    font-weight: bold;
+textarea {
+    width: 100%;
+    height: 150px;
+    border-radius: 6px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    resize: vertical;
+    font-size: 1rem;
+    color: #333;
 }
 
 button {
-    background: #007BFF;
+    background-color: #004d99;
     color: #fff;
+    font-size: 1rem;
+    padding: 10px 20px;
     border: none;
-    padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 15px;
 }
 
 button:hover {
-    background: #0056b3;
+    background-color: #0066cc;
+}
+
+.result {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.phishing {
+    background-color: #cc3300;
+}
+
+.safe {
+    background-color: #339933;
+}
+
+.recommendation {
+    font-size: 0.9rem;
+    margin-top: 10px;
 }
