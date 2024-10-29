@@ -16,6 +16,10 @@ def index():
         # Get input email text
         email_text = request.form['email_text']
 
+         # Check for minimum input length
+        if len(email_text.split()) < 10:  # Adjust the word count threshold as needed
+            return render_template('index.html', message="Please provide a more detailed email for accurate detection.")
+
         # Preprocess and predict
         email_vector = vectorizer.transform([email_text])
         prediction = model.predict(email_vector)[0]

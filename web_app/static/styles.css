@@ -33,6 +33,12 @@ h1 {
     margin-bottom: 20px;
 }
 
+.alert-message {
+    color: red;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
 form {
     display: flex;
     flex-direction: column;
