@@ -104,3 +104,23 @@ button:hover {
     font-weight: bold;
     margin: 10px 0;
 }
+
+.accurate {
+    padding-top: 20px;
+}
+
+.alert {
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.alert-success {
+    color: #4caf50; 
+    font-weight: bold;
+}
+
+.alert-danger {
+    color: #f44336; 
+    font-weight: bold;
+}

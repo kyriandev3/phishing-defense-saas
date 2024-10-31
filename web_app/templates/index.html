@@ -27,7 +27,7 @@
         {% endif %}
 
         {% if prediction %}
-            <p>Was this prediction accurate?</p>
+            <p class="accurate">How satisfied are you with the prediction?</p>
             <form method="POST" action="/feedback">
                 <input type="hidden" name="email_text" value="{{ email_text }}">
                 <input type="hidden" name="prediction" value="{{ prediction }}">
@@ -36,12 +36,15 @@
             </form>
     {% endif %}
 
-    {% if message and message_type == 'error' %}
-        <p class="alert-message">{{ message }}</p>
-    {% elif message and message_type == 'success' %}
-        <p class="feedback-message">{{ message }}</p>
-    {% endif %}
-
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert {{ 'alert-success' if category == 'success' else 'alert-danger' }}" style="margin-top: 20px;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 
     </div>
 </body>

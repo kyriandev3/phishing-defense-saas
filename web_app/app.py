@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 import joblib
 import os
 import pandas as pd 
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # Set a secret key for flash messages
 
 # Load model and vectorizer
 model_path = os.path.join('models', 'phishing_model.pkl')
@@ -18,8 +19,9 @@ def index():
         email_text = request.form['email_text']
 
          # Check for minimum input length
-        if len(email_text.split()) < 10:  # Adjust the word count threshold as needed
-            return render_template('index.html', message="Please provide a more detailed email for accurate detection.", message_type='error')
+        if len(email_text.split()) < 10:
+            flash("Please provide a more detailed email for accurate detection.", 'error')
+            return render_template('index.html')
 
         # Preprocess and predict
         email_vector = vectorizer.transform([email_text])
@@ -44,7 +46,10 @@ def feedback():
         df.to_csv(feedback_file, mode='a', header=False, index=False)
     else:
         df.to_csv(feedback_file, index=False)
-    return render_template('index.html', message="Feedback received. Thank you!", message_type='success')
+    
+    # Use flash instead of passing message in the URL
+    flash("Feedback received. Thank you!", 'success')
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug=True)
