@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Phishing Email Detection</h1>
+        <h1>AI Phishing Email Detection</h1>
         
         <form method="POST">
             <label for="email_text" class="email-label">Paste Email Content:</label>
@@ -31,8 +31,8 @@
             <form method="POST" action="/feedback">
                 <input type="hidden" name="email_text" value="{{ email_text }}">
                 <input type="hidden" name="prediction" value="{{ prediction }}">
-                <button type="submit" name="feedback" value="correct">Correct</button>
-                <button type="submit" name="feedback" value="incorrect">Incorrect</button>
+                <button type="submit" name="feedback" value="correct">Satisfied</button>
+                <button type="submit" name="feedback" value="incorrect">Not Satisfied</button>
             </form>
     {% endif %}
 
