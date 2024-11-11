@@ -124,3 +124,27 @@ button:hover {
     color: #f44336; 
     font-weight: bold;
 }
+
+/* Styling for credit section */
+.credit {
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9em;
+    color: #555;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+}
+
+.credit a {
+    color: #0073e6; /* Link color */
+    text-decoration: none;
+}
+
+.credit a:hover {
+    text-decoration: underline;
+}
+
+.credit p {
+    margin: 0;
+}
